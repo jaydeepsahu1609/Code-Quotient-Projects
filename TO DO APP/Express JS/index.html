@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/index.css">
+    <title>ToDo Express</title>
+</head>
+
+
+<body>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row d-flex lg-flex-row md-flex-row md-flex-column">
+                <div class="col-lg-6 col-md-6 col-sm-12 left" id="#leftPane">
+                    <h2 class="title">task list</h2>
+                    <p class="lead">
+                        Add task to your list by typing to the right and pressing <kbd>Enter</kbd>. You may then
+                        view the pending tasks below.
+                    </p>
+                    <div class="task-container" id="task-container">
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 right" id="#rightpane">
+                    <textarea class="form-control" name="textarea" id="textarea" cols="30" rows="1"
+                        placeholder="I want to..." value=""></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="lead" id="footer">Created by:- Jaydeep Sahu</p>
+
+
+
+    <script src="index.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

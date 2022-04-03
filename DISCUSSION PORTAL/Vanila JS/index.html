@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Discussion Portal App" />
+    <meta name="Author" content="Jaydeep Sahu" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Discussion Portal</title>
+</head>
+
+
+<body class="m-0 p-0">
+
+    <header>
+        <h5 class="text-light">
+          <em class="fas fa-comments"></em>&nbsp; DISCUSSION PORTAL
+        </h5>
+        <h6 class="text-muted">
+            <em class="fas fa-pen-fancy">Created By Jaydeep Sahu</em>
+        </h6>
+    </header>
+
+    <!-- --------------------------------------------------------------------- -->
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <!-- User story 1 :
+                    -  Your page should be divided in two parts.
+                    - The left pane is initially empty but should contain a list of questions. 
+                    - The right pane, by default, contains a question form with mandatory field title & question. 
+                 -->
+                <div class="col-lg-6 col-md-6" id="leftPane">
+
+                    <div class="container">
+                        <div class="row firstRow">
+                            <div>
+                                <button class="btn btn-sm btn-primary text-light" onclick="displayQuestionPane()">
+                                   <em class="fas fa-plus"></em>&nbsp;New Discussion Form
+                                </button>
+
+                                <input type="search" name="search" id="search" placeholder="Search questions..">
+                            </div>
+                        </div>
+                        <div class="row questions" id="questions">
+                            <ul id="questionList">
+                                <!-- questions will be displayed here -->
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-6 col-md-6" id="rightPane">
+                    <div class="row text-left" id="formContainer">
+                        <div class="row firstRow">
+                            <h4 class="text-light">
+                                Welcome to Discussion Portal !
+                            </h4>
+                            <p class="text-muted">
+                                Enter a subject and question to get started
+                            </p>
+                        </div>
+                        <input type="text" class="w-25 mb-3" name="subject" id="subject" placeholder="Subject" required>
+                        <br>
+                        <textarea name="question" id="question" cols="30" rows="10" placeholder="Question" required></textarea>
+                        <div class="controls">
+                            <button class="btn btn-sm btn-primary" id="submitBtn"
+                                onclick="submitQuestion()">SUBMIT</button>
+                        </div>
+                    </div>
+                    <div class="row text-left" id="responseFormContainer" style="display:none">
+                        <ul id="responseQuestion">
+                        </ul>
+                        <ul id="responseList">
+                            <li class="header text-light">Response</li>
+                        </ul>
+                        <div id="responseForm">
+                        </div>
+                    </div>
+                    <!-- 
+                        User Story 3 : When a question box in the left pane is clicked, display the question, 
+                        the response form, and the responses in the right pane. Response form contains Name & Comment field (Both are mandatory).
+                        There should be a "Resolve" button, below the question segment. 
+                    -->
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- --------------------------------------------------------------------- -->
+
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

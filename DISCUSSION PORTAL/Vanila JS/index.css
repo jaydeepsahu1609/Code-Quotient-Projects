@@ -1,0 +1,297 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+*:focus {
+    outline: none;
+}
+
+button{
+    color: blue;
+    border: none;
+    background-color: transparent;
+}
+
+em{
+    z-index: 999;
+}
+em:hover{
+    transition: all 0.3s linear;
+    color: blue;
+    transform: rotateY(180deg);
+}
+
+input, textarea{
+    min-width: 50%;
+    background-color: black;
+    color: whitesmoke;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    margin-left: 0.3rem;
+    font-size: small;
+}
+/* ------------------Page Structure------------------------- */
+
+body {
+    min-width: 100vw;
+    max-width: 100vw;
+
+    min-height: 120vh;
+    max-height: auto;
+
+    overflow-x: hidden;
+
+    background: url(https://cdn.pixabay.com/photo/2016/08/31/17/02/blue-1634110_960_720.png);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: rgb(2,0,36); */
+    /* background: linear-gradient(52deg, rgba(2,0,36,1) 0%, rgba(25,43,30,1) 17%, rgba(150,248,177,1) 72%, rgba(137,255,0,1) 100%); */
+}
+
+header {
+    min-height: 3%;
+    max-height: 3%;
+    width: 100%;
+    border-bottom: 2px solid white;
+    margin-bottom: 1rem;
+}
+
+main {
+    min-height: 97%;
+    max-height: 97%;
+    width: 100vw;
+}
+
+/* ------------------HEADER------------------------- */
+header {
+    padding: 0.5rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header>h5 {
+    animation: rotateHeader 1s ease-in-out infinite;
+    padding: 0.3rem;
+}
+
+@keyframes rotateHeader{
+    0%{
+        transform:rotate(1deg);
+    }
+    50%{
+        transform:rotate(-1deg);
+    }
+    90%{
+        transform:rotate(0.5deg);
+    }
+    100%{
+        transform:rotate(0.9deg);
+    }
+}
+/* --------------------MAIN----------------------------- */
+#leftPane,
+#rightPane {
+    max-height: 90%;
+    width: 50%;
+}
+
+#leftPane,
+#rightPane,
+#leftPane .container,
+#leftPane div.firstRow {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#leftPane .container #questions{
+    /* background-color: rgba(156, 156, 179, 0.3); */
+    min-height: 570px;
+    max-height: 570px;
+    overflow-y: auto;
+}
+
+
+/* --------------------Left Pane----------------------------- */
+
+#leftPane div.firstRow div {
+    width: 100%;
+    height: 5%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+#leftPane div.questions {
+    width: 100%;
+    margin: 0;
+    min-height: 500px;
+    padding: 0.1rem;
+    /* padding: 1rem; */
+    overflow-y: auto;
+}
+
+#leftPane div.firstRow input[type="search"],
+#leftPane div.firstRow button {
+    font-size: small;
+}
+
+#leftPane #questionList li{
+    list-style: none;
+    margin: 0.3rem 0;
+    padding: 0.3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: small;
+    line-height: 0.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+#leftPane #questionList li p{
+        font-size: small;
+}
+
+#leftPane #questionList li:hover {
+    transition: all 0.1s linear;
+    background-color: #341f97;
+    color: #f5f6fa;
+    border-radius: 2%;
+
+}
+
+#leftPane #questionList li:hover em:last-child{
+    color: #f5f6fa;
+}
+
+#leftPane #questionList li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+
+/* --------------------Right Pane----------------------------- */
+
+#rightPane {
+    padding-left: 1rem;
+    padding-left: 0.5rem;
+}
+
+textarea{
+    width: fit-content;
+    /* border-color: green; */
+}
+
+#rightPane .firstRow {
+    text-align: left;
+}
+
+#rightPane .firstRow h4 {
+    margin: 0;
+}
+
+#formContainer,
+#resForm {
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#formContainer span,
+#responseForm span {
+    margin: 0;
+}
+
+#formContainer .controls,
+#responseForm .controls {
+    padding-top: 0.3rem;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#responseFormContainer {
+    width: 100%;
+}
+
+#responseFormContainer ul {
+    width: 100%;
+}
+
+#responseFormContainer ul li {
+    list-style: none;
+    margin: 0.3rem 0;
+    padding: 0.3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#responseFormContainer ul li.header {
+    font-size: large;
+    font-weight: bold;
+}
+
+#responseFormContainer ul div {
+    padding-left: 0.5rem;
+}
+
+#responseFormContainer ul p{
+    font-size: small;
+
+}
+
+#responseFormContainer ul div p:first-child {
+    font-weight: 600;
+    margin: 0;
+}
+
+#responseFormContainer ul div p:last-child {
+    font-weight: normal;
+}
+
+#responseForm,
+#responseForm textarea {
+    border-color: green;
+    width: 100%;
+}
+
+.highlight {
+    background-color: #e1e2e3;
+}
+
+#responseQuestion div:last-child {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+#responseList {
+    min-height: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#responseQuestion p:nth-child(2) {
+    height: auto ;
+    line-height: 1rem;
+    overflow-wrap:break-word;
+}
+
+#responseQuestion .time{
+    font-size: xx-small;
+}

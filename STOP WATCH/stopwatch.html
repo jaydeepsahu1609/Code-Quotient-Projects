@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Stop Watch</title>
+    <style>
+      *{
+        padding:0;
+        margin:0;
+        box-align:border-box;
+      }
+
+      body{
+      /* User Story 2: Give body background black colour and text colour white. */
+        background-color: black;
+        color:white;
+        max-width:80vw;
+        min-width:80vw;
+        min-height:80vh;
+        margin:0 auto;
+      }
+
+      .container{
+        width:100%;
+        height:100%;
+        padding:3rem;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+      }
+
+
+      .timer{
+        height:30%;
+        width:100%;
+        margin:3rem auto;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+      }
+
+      .controls{
+        height:30%;
+        width:100%;
+        padding:3rem;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+      }
+
+      .laps{
+        height:40%;
+        width:100%;
+        padding:0.5rem;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+
+      label{
+        padding:1rem;
+        margin:1rem 2rem;
+        font-size:7rem;
+        font-weight:800;
+        color:white;
+        border-radius:50%;
+        border:8px double white;
+      }
+
+      .animate{
+        animation:blink 1s linear infinite;
+      }
+
+      button{
+        width:100px;
+        height:100px;
+        font-weight:800;
+        font-size:1rem;
+        background-color:rgba(0,0,255,0.6);
+        color:white;
+        border-radius:3rem;
+        border:8px double black;
+        padding:0.1rem;
+
+      }
+
+      button#lap {
+        background-color:rgba(255,255,255,0.1);
+      }
+
+      button:hover{
+        transition:all 0.3s linear;
+        box-shadow:0 4px 6px 1px rgba(0,0,0,0.7);
+        background-color:orange;
+      }
+      button#lap:hover{
+        background-color:rgba(255,255,255,0.4);
+        color:white;
+      }
+
+      table{
+        width:75%;
+      }
+
+      thead, td{
+        text-align:center;
+        width:100px;
+        border:2px solid white;
+        margin:0.3rem 3rem;
+        padding:0.3rem;
+        font-size:1rem;
+      }
+
+      thead{
+        background-color:yellow;
+        color:black;
+        font-weight:bolder;
+      }
+
+      @keyframes blink{
+        from{
+          border-color:blue;
+        }
+        to{
+          border-color:white;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+      <!-- Build a Clock and fulfill the below User stories. -->
+      <!-- User Story 1: Create a div with the class container and center it on screen -->
+      <div class="container">
+
+
+        <div class="timer">
+          <!-- User Story 3: Implement a label tag and show the time in this label tag. -->
+          <label for="hour" id="hour">00</label>
+          <label for="minute" id="minute">00</label>
+          <label for="second" id="second" class="">00</label>
+        </div>
+
+      <!-- User Story 4: Implement two buttons named as Lap and Start. -->
+        <div class="controls">
+          <!-- User Story 5: Start button starts the timer of the stopwatch. -->
+          <button id="start">Start</button>
+          <!-- User Story 6: The lap button prepends a new list element with the current time at which the stopwatch was clicked. -->
+          <button id="lap">Lap</button>
+
+        </div>
+      
+
+        <div class="laps">
+            <table id="lapList">
+              <thead>
+                <td>Lap Count</td>
+                <td>Lap Time</td>
+              </thead>
+            </table>
+        </div>
+      </div>
+
+
+      <script>
+ // -------------------------------------------------------------------
+
+        var hour = document.getElementById("hour");
+        var minute = document.getElementById("minute");
+        var second = document.getElementById("second");
+
+        var startBtn = document.getElementById("start");
+        var lapBtn = document.getElementById("lap");
+        var lapList = document.getElementById("lapList");
+
+        var interval = undefined;
+        var seconds=0, minutes=0, hours=0;
+
+        var started = false;
+        var lapCount = 0;
+
+ // ------------------ EVENT LISTENERS -----------------------------------------
+        startBtn.addEventListener("click", timer); // start/stop timer when start button is clicked
+        lapBtn.addEventListener("click", lap);  // lap/reset timer when lap button is clicked
+
+ // -------------------------- START BUTTON ------------------------------------
+
+        function timer()
+        {
+          // started = false : timer is stopped so start the timer
+          // started = true  : timer is running so stop  the timer
+
+          if(started == false)
+          {
+            started = true; // timer started
+
+            second.classList.add('animate');
+            minute.classList.add('animate');
+            hour.classList.add('animate');
+
+              interval = setInterval(()=>{
+                //console.log(`${hours}:${minutes}:${seconds}`);
+                if(seconds <= 59)
+                {
+                  seconds++;
+                  second.innerHTML = seconds.toString().padStart(2,0);
+                }
+                if(seconds == 60){
+                  seconds = 0;
+                  second.innerHTML = "00";
+                  minutes++;
+                  minute.innerHTML = minutes.toString().padStart(2, 0);
+                }
+
+                if(minutes == 59)
+                {
+                  minutes = 0;
+                  minute.innerHTML = "00";
+                  hours++;
+                  hour.innerHTML = hours;
+                }
+            }, 1000);
+              // User Story 7: If stopwatch is running change the start button to stop button with a red background.
+              startBtn.innerHTML = "Stop";
+              startBtn.style.backgroundColor = "rgba(255,0,0,0.5)";
+              
+            lapBtn.innerHTML = "Lap";
+            lapBtn.style.backgroundColor = "rgba(255,255,255,0.4)";
+
+          }
+          else if(started == true)
+          { // stop the timer
+          started = false;
+            second.classList.remove('animate');
+            minute.classList.remove('animate');
+            hour.classList.remove('animate');
+
+            if(interval != undefined)
+            {
+              startBtn.innerHTML = "START";
+              startBtn.style.backgroundColor = "rgba(0,0,255,0.6)";
+
+              clearInterval(interval);
+              interval = undefined;
+
+              //  User Story 8: If the user stops the time change the Lap button to reset which resets the stopwatch.
+              lapBtn.innerHTML = "Reset";
+              lapBtn.style.backgroundColor = "green";
+            }
+          }
+        }
+ // ----------------------- LAP BUTTON -------------------------------
+
+        function lap()
+        {
+          if(started == false)
+          { // timer is stopped so reset it
+
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            lapCount = 0;
+
+            hour.innerHTML = "00";
+            minute.innerHTML = "00";
+            second.innerHTML = "00";
+
+            if(interval != undefined)
+            {
+              clearInterval(interval);
+              interval = undefined;
+            }
+
+            startBtn.innerHTML = "START";
+            startBtn.style.backgroundColor = "rgba(0,0,255,0.6)";
+            lapBtn.innerHTML = "Lap";
+            lapBtn.style.backgroundColor = "rgba(255,255,255,0.4)";
+
+            // clear the lap list
+            let allLaps = lapList.childNodes;
+
+            for(let i=3; i<allLaps.length;)
+            {
+              allLaps[i].parentNode.removeChild(allLaps[i]);
+            }
+          }
+          else{
+            // timer is running so add lap to the list
+            lapCount++;
+
+            let tr = document.createElement("tr");
+
+            let tdCount = document.createElement("td");
+            tdCount.innerText = lapCount;
+            
+            let tdTime = document.createElement("td");
+            tdTime.innerText = `${hours.toString().padStart(2,0)} : ${minutes.toString().padStart(2,0)} : ${seconds.toString().padStart(2,0)}`;
+
+            tr.appendChild(tdCount);
+            tr.appendChild(tdTime);
+
+            lapList.appendChild(tr);
+          }
+        }
+ // -------------------------------------------------------------------
+
+      </script>
+  </body>
+</html>
